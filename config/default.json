@@ -1,3 +1,4 @@
 {
-  "mongoConStr": "mongodb+srv://IDE:HErPZZW6gzW0MPH1@dev-con.sjpf9.mongodb.net/?retryWrites=true&w=majority"
+  "mongoConStr": "mongodb+srv://IDE:HErPZZW6gzW0MPH1@dev-con.sjpf9.mongodb.net/?retryWrites=true&w=majority",
+  "jwtSecret": "testSecret"
 }
