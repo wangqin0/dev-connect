@@ -1,8 +1,8 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {Link} from "react-router-dom";
 
 const Landing = () => (
-  <section className="landing">
+  <Fragment>
     <div className="dark-overlay">
       <div className="landing-inner">
         <h1 className="x-large">Developer Connector</h1>
@@ -16,7 +16,7 @@ const Landing = () => (
         </div>
       </div>
     </div>
-  </section>
+  </Fragment>
 );
 
 export default Landing;
