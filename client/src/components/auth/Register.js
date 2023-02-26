@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 
 import {setAlert} from "../../actions/alert";
+import {register} from "../../actions/auth";
 
 const Register = (props) => {
   const [formData, setFormData] = useState({
@@ -13,14 +14,15 @@ const Register = (props) => {
     password2: '',
   });
 
+  const {name, email, password, password2} = formData;
+
   const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
   const onSubmit = async e => {
     e.preventDefault();
-    if (formData.password !== formData.password2) {
+    if (password !== password2) {
       props.setAlert('passwords do not match', 'danger');
-      console.error('passwords do not match');
     } else {
-      console.log(formData);
+      props.register({name, email, password});
 
       // To access backend '/api/users'
       // const {name, email, password} = formData;
@@ -68,6 +70,7 @@ const Register = (props) => {
             name="email"
             value={formData.email}
             onChange={e => onChange(e)}
+            required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a Gravatar email
@@ -104,6 +107,7 @@ const Register = (props) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-export default connect(null, {setAlert})(Register);
+export default connect(null, {setAlert, register})(Register);
