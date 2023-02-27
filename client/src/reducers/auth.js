@@ -4,7 +4,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT,
 } from "../actions/types";
 
 // The initial state of the auth reducer. Define it separately to avoid clutter in the reducer function parameters.
@@ -44,6 +45,7 @@ export default function (state = initState, action) {
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
+    case LOGOUT:
       // many action error type will be handled here,
       // basically we don't want to have an invalid token in localStorage/state
 
