@@ -1,4 +1,4 @@
-import {REGISTER_SUCCESS, REGISTER_FAIL} from "../actions/types";
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR} from "../actions/types";
 
 // The initial state of the auth reducer. Define it separately to avoid clutter in the reducer function parameters.
 // The token is stored in localStorage, so we can access it from there
@@ -11,7 +11,13 @@ const initState = {
 
 export default function (state = initState, action) {
   switch (action.type) {
-
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: action.payload,
+      };
     case REGISTER_SUCCESS:
       // put token to localStorage
       localStorage.setItem('token', action.payload.token);
@@ -26,6 +32,10 @@ export default function (state = initState, action) {
       return successReturn;
 
     case REGISTER_FAIL:
+    case AUTH_ERROR:
+      // many action error type will be handled here,
+      // basically we don't want to have an invalid token in localStorage/state
+
       // remove token from localStorage
       localStorage.removeItem('token');
 
